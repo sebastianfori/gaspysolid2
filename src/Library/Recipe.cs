@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.Text;
 
 namespace Full_GRASP_And_SOLID.Library
 {
@@ -39,14 +40,17 @@ namespace Full_GRASP_And_SOLID.Library
             return costoInsumos+costoEquipamiento;
         }
 
-        public void PrintRecipe()
+        public String ToString()
         {
-            Console.WriteLine($"Receta de {this.FinalProduct.Description}:");
+            StringBuilder retorno=new StringBuilder() ;
+            retorno.Append($"Receta de {this.FinalProduct.Description}:\n");
+
             foreach (Step step in this.steps)
             {
-                Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
-                    $"usando '{step.Equipment.Description}' durante {step.Time}");
+                retorno.Append($"{step.Quantity} de '{step.Input.Description}' " +
+                    $"usando '{step.Equipment.Description}' durante {step.Time}\n");
             }
+            return retorno.ToString();
         }
     }
 }
